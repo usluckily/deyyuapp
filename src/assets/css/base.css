@@ -1,0 +1,179 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{
+  font-size:20px;
+  overflow-x: hidden;
+}
+
+body {
+    font-family: "微软雅黑";
+}
+
+a {
+    text-decoration: none;
+}
+ul, li, ol {
+  list-style: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a, button, input, textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /*-webkit-touch-callout:none;*/
+  /*-webkit-user-select:none;*/
+  /*-khtml-user-select:none;*/
+  /*-moz-user-select:none;*/
+  /*-ms-user-select:none;*/
+  /*user-select:none;*/
+  /*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/
+  /*-webkit-transform-style: preserve-3d;*/
+  /*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/
+  -webkit-backface-visibility: hidden;
+}
+
+.c_green {
+  color: #1AB99B;
+}
+.c_red{
+  color:#F46867;
+}
+
+.all {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 auto;
+  /*overflow:hidden;*/
+  background: #eee;
+  top:0;
+  overflow-x: hidden;
+}
+
+.content{
+
+}
+
+.con-box{
+  padding: 1rem 0.2rem;
+  margin:0.5rem 0;
+  background:#fff;
+  box-shadow:0 0 5px #cbc9c9;
+  border-radius: 0.3rem;
+  position:relative;
+}
+
+.con-box .title{
+  width:10rem;
+  margin:0 auto;
+  color:#fff;
+  padding-top: 0.3rem;
+}
+.con-box .title p , .con-box .title div{
+  width:100%;
+
+}
+.con-box .title p{
+  text-align:center;
+  font-size:0.8rem;
+  line-height:1.5rem;
+}
+.con-box .title div img{
+  width:100%;
+}
+.con-box .title div{
+  margin:0 0 2rem 0;
+}
+
+.swiper-slide{
+  padding: 0 1rem 0.5rem 1rem;
+}
+
+.rank-box.head{
+  display:flex;
+  justify-content:space-around;
+  align-items:flex-end;
+  flex-wrap:wrap;
+}
+.rank-box.normal{
+  display:flex;
+  justify-content:left;
+  flex-wrap:wrap;
+}
+.rank-box .rank-card{
+  background: #fff none repeat scroll 0 0;
+  border-radius: 0.2rem;
+  padding: 0 1rem;
+  text-align: center;
+  width: 6rem;
+}
+.rank-card.no1 div:first-child{
+  padding:0.5rem 0
+}
+.rank-card.no1 div:last-child{
+  padding:0.8rem 0 0.2rem 0
+}
+.rank-card div{
+
+}
+.rank-card div:first-child{
+  padding:0.3rem 0;
+  border-bottom:1px solid #EBEBEB;
+  color: #555555;
+  font-size: 1.2rem;
+}
+.rank-card div:first-child img{
+  width:1.8rem;
+  display:block;
+  margin:0 auto;
+}
+
+.rank-card div:last-child{
+  padding:0.2rem 0;
+  color: #999999;
+  font-size: 2.5rem;
+}
+.rank-card.normal:last-child{
+  border:none;
+}
+.rank-card.normal{
+  border-right:1px solid #EBEBEB;
+  width:33.33%;
+}
+.rank-card.normal div:first-child{
+  padding:1rem 0;
+}
+.rank-card.normal div:last-child{
+  padding:1rem 0 0 0;
+}
+.out-con-tit {
+  color: #333;
+  padding-top: 0.5rem;
+  position:relative;
+  text-indent:0.5rem;
+}
+
+.out-con-tit::before {
+  background: #24B17C;
+  content: "";
+  display: block;
+  height: 1.1rem;
+  left: 0;
+  position: absolute;
+  top: 0.6rem;
+  width: 3px;
+}
+
+.prompt{position:fixed;width:100%;height:100%;display:flex;flex-direction: row;align-items:center;justify-content:center;}
+.prompt p{position: relative;top: -2rem;font-size:0.8rem;color: #888;}
