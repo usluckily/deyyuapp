@@ -11,7 +11,7 @@
           <div class="swiper-wrapper">
             <div :class="swiperSliderClass" v-for="(i,index) in (navList.length || 1)">
 
-              <m_ballpulse v-show="loaderShow && index == loaderCur"></m_ballpulse>
+              <m_ballpulse v-show="loaderShow && index == loaderCur" :test="loaderShow" :test2="loaderCur" :test3="index"></m_ballpulse>
 
               <div class="con-box head"><!--#24B17C-->
 
@@ -31,7 +31,7 @@
                       <img src="../assets/img/no2.png"/>
                       <p>{{ rankObj.no2.classname | classNameFilt }}</p>
                     </div>
-                    <div>{{ rankObj.no2.totalscore || '0' }}</div>
+                    <div>{{ rankObj.no2.totalscore || '-' }}</div>
                   </div>
 
                   <div class="rank-card no1" @click="toDetails(rankObj.no1.classid)">
@@ -39,7 +39,7 @@
                       <img src="../assets/img/no1.png"/>
                       <p>{{ rankObj.no1.classname | classNameFilt }}</p>
                     </div>
-                    <div>{{ rankObj.no1.totalscore || '0' }}</div>
+                    <div>{{ rankObj.no1.totalscore || '-' }}</div>
                   </div>
 
                   <div class="rank-card" @click="toDetails(rankObj.no3.classid)">
@@ -47,7 +47,7 @@
                       <img src="../assets/img/no3.png"/>
                       <p>{{ rankObj.no3.classname | classNameFilt }}</p>
                     </div>
-                    <div>{{ rankObj.no3.totalscore || '0' }}</div>
+                    <div>{{ rankObj.no3.totalscore || '-' }}</div>
                   </div>
 
                 </div>
@@ -66,7 +66,7 @@
 
                 </div>
 
-                <p v-if="rankObj.list <= 0" style="color:#888;text-align:center;">暂时没有数据</p>
+                <!--<p v-if="rankObj.list <= 0" style="color:#888;text-align:center;">暂时没有数据</p>-->
 
               </div>
 
@@ -143,21 +143,23 @@
             });
           },
         getRank(){
-          let vm = this , d = vm.navList , gid
+          let vm = this , nav = vm.navList , gid
 
           if(vm.$route.query.gid){
             gid = vm.$route.query.gid
-          }else if(d[0]){
-            gid = d[0].id
+          }else if(nav[0]){
+            gid = nav[0].id
           }
 
-          if(!d[0]){
+          if(!nav[0]){
             vm.loaderShow = false
             return
           }
 
           ajax.post(IF.getRank,{ sid:vm.BP().sid , gid:gid },function(d){
-            let res = d.data[0]
+            let res
+
+            d.data[0] ? res = d.data[0] : ''
 
             vm.resRank = d.data[0].classrankinglist
 
@@ -225,7 +227,7 @@
           vm.navList = vm.$store.state.grade
           vm.getRank()
         }else{
-          ajax.post(IF.getGrade,{ sid:vm.BP().sid,userid:vm.BP().userid },function(d){
+          ajax.post(IF.getGrade,{ sid:vm.BP().sid,userid:vm.BP().userid,showAllGrade:vm.BP().perm == 'CKSYNJPM' ? '1' : '0' },function(d){
 //          console.log(d)
 
             vm.navList = d.data
@@ -247,7 +249,7 @@
       },
       watch:{
         '$route'(to,from){
-            let vm = this
+          let vm = this
             vm.navCur = to.params.index
             vm.mySwiper.slideTo(to.params.index - 1,300)
             vm.getRank()
@@ -264,6 +266,8 @@
             $('#tabs-container .swiper-slide').css({ height:allH - navH })
 
             vm.slider()
+            vm.mySwiper.slideTo( vm.$route.params.index - 1 || 0 ) //从详细页返回时通过index参数动态改变current slider
+
           })
         }
       }

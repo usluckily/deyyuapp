@@ -20,7 +20,7 @@
         },
         list:{
           type:Array,
-          default:[]
+          default:[{name:' 1'}]
         }
       },
       data(){
